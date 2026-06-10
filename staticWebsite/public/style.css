@@ -1,0 +1,38 @@
+:root{
+    --bodyBGColor :#B9B9B9;
+    --highLightMarron :#B53232;
+    --font50:50px;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:var(--bodyBGColor);
+}
+
+
+.foundingAca{
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+}
+.imgDiv img{
+    width: 550px;
+    height: 391px;
+}
+.contentDiv{
+    padding: 30px;
+}
+.headingFounding{
+    border-left: 9px solid var(--highLightMarron);
+    font-size: var(--font50);
+    padding-left: 5px;
+    line-height: 90%;
+}
+.contentDiv p{
+    margin-bottom: 5px;
+    font-size: 16px;
+}
