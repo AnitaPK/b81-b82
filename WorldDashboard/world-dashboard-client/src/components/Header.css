@@ -1,0 +1,7 @@
+.header1{
+    font-size: 6rem;
+    color: blue;
+    text-shadow: 2px 2px 3px white, 4px 4px 3px black;
+    font-weight: 700;
+    text-align: center;
+}
