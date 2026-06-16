@@ -28,7 +28,7 @@ console.log(topTen)
   return (
     <>
         <div>Top Ten Populated countries</div>
-  <div style={{ width: "300px", height: "200px" }}>
+  <div style={{ width: "550px", height: "200px" }}>
     <ResponsiveContainer width="100%" height="100%">
         <BarChart data={topTen}>
           <XAxis dataKey="name" />

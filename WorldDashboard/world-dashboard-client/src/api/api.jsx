@@ -24,4 +24,10 @@ export async function getTopTenCounPop(){
     }
 }
 
+export async function getCountryByGivenPop(data){
+    const res = await axiosInstance.post('/get-higher-pop-given-value', data)
 
+    if(res.data.success){
+        return res.data.result
+    }
+}

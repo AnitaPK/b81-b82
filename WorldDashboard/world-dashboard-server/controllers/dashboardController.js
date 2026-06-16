@@ -81,15 +81,16 @@ function getPopulationByContinent(req,res){
 
 
 function getCountryByGivenPop(req,res){
+    console.log(req.body)
     try {
         const x = req.body.popCount
-        q5 =`SELECT Name, Population FROM country WHERE Population > ${x} ORDER BY Population DESC;`
+        q5 =`SELECT Name, Population FROM country WHERE Population > ? ORDER BY Population DESC;`
         
-        connection.execute(q5, (err,result)=>{
+        connection.execute(q5,[x], (err,result)=>{
             if(err){
-                res.status(400).send({msg:"Database error..."})
+                res.status(400).send({msg:"Database error...",success:false})
             }else{
-                res.status(200).send({result:result})
+                res.status(200).send({result:result, success:true})
             }
         })
     } catch (error) {
