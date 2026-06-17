@@ -19,7 +19,15 @@ router.delete('/delete/:ID', daleteTask)
 
 
 
-// F. /getCompleted 
+// 1. /getCompletedTasks 
+// 2. /getPendingTask 
+// 3. /getInPRogressTask 
+
+// 1. /getTasksByStatus.    ?status=""
+
+// 2. /getTasksBySelectedMonth 
+
+
 
 module.exports = router
 

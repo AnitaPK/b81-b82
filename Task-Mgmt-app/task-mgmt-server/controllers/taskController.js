@@ -48,15 +48,46 @@ async function getTaskByID(req,res){
 }
 
 async function updateStatus(req,res){
+        const ID = req.params.ID
+        const status = req.body.status
     try {
-        
+        statuArr = ["Pending", "Inprogress", "Completed"]
+        if(!statuArr.includes(status)){
+            return res.status(400).send({msg:"Data not found",success:false})
+        }
+        const taskForStatusUpdate = await Task.findByPk(ID)
+        // console.log(taskForStatusUpdate)
+        if(!taskForStatusUpdate){
+            return res.status(400).send({msg:"Task not found", success:false})
+        }
+
+        await taskForStatusUpdate.update({status:status})
+        res.status(200).send({msg:"Task status updated successfully"})
+
+
     } catch (error) {
         console.log(error)
         res.status(500).send({msg:"Server error"})
     }
 }
 async function updateTask(req,res){
+    const ID = req.params.ID
+
     try {
+         const taskForUpdate = await Task.findByPk(ID)
+        // console.log(taskForUpdate)
+        if(!taskForUpdate){
+            return res.status(400).send({msg:"Task not found", success:false})
+        }
+            // add code for date validation 
+
+        await taskForUpdate.update({
+            title:req.body.title || taskForUpdate.title,
+            description:req.body.description || taskForUpdate.description,
+            startDate:req.body.startDate || taskForUpdate.startDate,
+            endDate:req.body.endDate || taskForUpdate.endDate
+        })
+        res.status(200).send({msg:"Task updated successfully", success:true})
         
     } catch (error) {
         console.log(error)
@@ -64,7 +95,16 @@ async function updateTask(req,res){
     }
 }
 async function daleteTask(req,res){
+    const ID = req.params.ID
     try {
+        const taskForDelete = await Task.findByPk(ID)
+        console.log(taskForDelete)
+        if(!taskForDelete){
+            return res.status(400).send({msg:"Task not found", success:false})
+        }
+        await taskForDelete.destroy()
+        // Task.destroy({where:{id:ID}})
+        res.status(200).send({msg:"Task deleted successfully"})
         
     } catch (error) {
         console.log(error)

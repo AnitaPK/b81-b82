@@ -3,6 +3,8 @@ const cors = require('cors')
 const {conneDB} = require('./config/db')
 require('dotenv').config()
 const taskRouter = require('./routes/taskRoute')
+const userRouter = require('./routes/userRoute')
+
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -13,5 +15,7 @@ app.use(cors())
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.use('/task', taskRouter)
+app.use('/user', userRouter)
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
