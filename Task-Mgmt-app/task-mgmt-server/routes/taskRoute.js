@@ -7,15 +7,16 @@ updateStatus,
 updateTask,
 daleteTask
 } = require('../controllers/taskController')
+const {auth, admin} =require('../middleware/auth')
 
 const router = express.Router()
 
-router.post('/create', createTask)
-router.get('/getAll', getAllTasks)
-router.get('/getTask/:ID', getTaskByID)
-router.patch('/updateStatus/:ID', updateStatus)
-router.put('/updateTask/:ID', updateTask)
-router.delete('/delete/:ID', daleteTask)
+router.post('/create',auth, admin,createTask)
+router.get('/getAll',auth, getAllTasks)
+router.get('/getTask/:ID',auth, getTaskByID)
+router.patch('/updateStatus/:ID', auth,updateStatus)
+router.put('/updateTask/:ID',auth,admin, updateTask)
+router.delete('/delete/:ID',auth,admin, daleteTask)
 
 
 

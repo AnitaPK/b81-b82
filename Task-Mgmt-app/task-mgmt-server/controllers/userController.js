@@ -1,5 +1,7 @@
 const User = require('../models/userModel')
 const bcryptjs = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
 const register = async (req,res)=>{
@@ -39,18 +41,24 @@ const login = async (req,res)=>{
         if(!isPassCorrect){
             return res.status(401).send({msg:"Invalid credentials",success:false})
         }
-
-        res.status(200).send({msg:"Logged in succesfully",success:true})
+        const id = existingUser.id 
+        const role = existingUser.role
+        const token = jwt.sign({id:id,role:role}, process.env.SECRET_KEY, {expiresIn:"2h"})
+        res.status(200).send({msg:"Logged in succesfully",success:true, token:token})
 
 } catch (error) {
         res.status(500).send({msg:"Server error", success:false})
     }
 }
 
-const getUserInfo = (req,res) =>{
+const getUserInfo = async(req,res) =>{
     try{
+        console.log("************", req.user)
+        const loggedUser =  await User.findByPk(req.user.id,{
+            attributes:{exclude:["password", "createdAt","updatedAt"]}
+        })
 
-        res.status(200).send({loggedUser:"We done for today"})
+        res.status(200).send({loggedUser:loggedUser,success:true})
 
         } catch (error) {
         res.status(500).send({msg:"Server error", success:false})
