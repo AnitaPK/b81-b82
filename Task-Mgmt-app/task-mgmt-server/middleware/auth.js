@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 function auth (req,res,next){
-    console.log(req.headers.authorization)
+    // console.log(req.headers.authorization)
 
     if(!req.headers.authorization){
         res.status(400).send({msg:"Please login"})
@@ -12,9 +12,9 @@ function auth (req,res,next){
         res.status(400).send({msg:"Not authorized; Invalid format"})
     }
     token = token.split(' ')[1]
-    console.log(token)
+    // console.log(token)
     const decoded = jwt.decode(token, process.env.SECRET_KEY)
-    console.log(decoded)
+    // console.log(decoded)
     req.user = {
         id:decoded.id,
         role:decoded.role

@@ -28,6 +28,9 @@ router.delete('/delete/:ID',auth,admin, daleteTask)
 
 // 2. /getTasksBySelectedMonth 
 
+//getTotalTasks
+//getTotalCompletedTask
+//getTotalInprogressTask 
 
 
 module.exports = router

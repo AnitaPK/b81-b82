@@ -5,6 +5,7 @@ require('dotenv').config()
 
 
 const register = async (req,res)=>{
+    console.log(req.body)
     let {name,email, password,contactNumber} = req.body
 
     try {
@@ -31,7 +32,7 @@ const login = async (req,res)=>{
 
     try {
          const existingUser =await User.findOne({where:{email:email}})
-            console.log(existingUser)
+            // console.log(existingUser)
         if(!existingUser){
             return res.status(401).send({msg:"User does not exist",success:false})
         }
