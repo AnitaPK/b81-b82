@@ -29,6 +29,7 @@ const Task = sequelize.define("Task", {
         type:DataTypes.DATEONLY,
         allowNull:false
     },
+    
 
 },{timestamps:true,tableName:'task'})
 

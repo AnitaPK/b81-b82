@@ -4,6 +4,7 @@ const {conneDB} = require('./config/db')
 require('dotenv').config()
 const taskRouter = require('./routes/taskRoute')
 const userRouter = require('./routes/userRoute')
+const assignTaskRouter = require('./routes/assignTaskRouter')
 
 
 const app = express()
@@ -16,6 +17,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 app.use('/task', taskRouter)
 app.use('/user', userRouter)
+app.use('/assign-task', assignTaskRouter)
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
