@@ -1,0 +1,16 @@
+import axiosInstance from "./axiosInstance";
+
+export const createTASK =async (payload) => {
+const res = await axiosInstance.post("/task/create", payload)
+    return res.data
+}
+
+export const getAllTASKS = async () => {
+  const res = await axiosInstance.get("/task/getAll");
+  return res.data;
+};
+
+export const deleteTASK = async (id) => {
+  const res = await axiosInstance.delete(`/task/delete/${id}`);
+  return res.data;
+};

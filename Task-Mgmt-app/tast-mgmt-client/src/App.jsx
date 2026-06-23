@@ -11,12 +11,14 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './pages/Layout'
+import CreateUpdateTask from './components/tasks/CreateUpdateTask'
+import AllTasks from './components/tasks/AllTasks'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <ToastContainer position="top-right" />
 
       <Routes>
@@ -24,10 +26,15 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<ProtectedRoute >
           <Layout />
-        </ProtectedRoute>} >
-          
-        </Route>
 
+        </ProtectedRoute>} >
+          <Route path="create-task" element={<CreateUpdateTask />} />
+          <Route path="edit-task/:ID" element={<CreateUpdateTask />} />
+
+          <Route path="all-tasks" element={<AllTasks />}></Route>
+
+
+        </Route>
       </Routes>
     </BrowserRouter>
   )

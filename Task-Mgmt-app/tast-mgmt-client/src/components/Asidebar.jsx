@@ -30,9 +30,10 @@ const Asidebar = () => {
 
   const adminMenus = [
     { title: "Dashboard", path: "/dashboard", icon: <FaHome /> },
-    { title: "All Tasks", path: "/all-tasks", icon: <FaTasks /> },
-    { title: "Create Task", path: "/create-task", icon: <FaPlusCircle /> },
+    { title: "All Tasks", path: "all-tasks", icon: <FaTasks /> },
+    { title: "Create Task", path: "create-task", icon: <FaPlusCircle /> },
     { title: "Users", path: "/users", icon: <FaUsers /> },
+    { title: "My Tasks", path: "/my-tasks", icon: <FaTasks /> },
     { title: "Profile", path: "/profile", icon: <FaUser /> },
   ];
 
@@ -58,7 +59,7 @@ const Asidebar = () => {
           {menus.map((menu, index) => (
             <Link
               key={index}
-              to={menu.path}
+              to={`/dashboard/${menu.path}`}
               className="d-flex align-items-center gap-2 text-white text-decoration-none mb-3"
             >
               {menu.icon}

@@ -17,7 +17,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 app.use('/task', taskRouter)
 app.use('/user', userRouter)
-app.use('/assign-task', assignTaskRouter)
+app.use('/assign', assignTaskRouter)
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

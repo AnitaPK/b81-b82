@@ -14,3 +14,11 @@ export const getUserInfo = async()=>{
     const res = await axiosInstance.get("/user/getUserInfo")
     return res.data
 }
+
+
+
+export const getAllUsers = async () => {
+  const res = await axiosInstance.get("/user/getAllUsers");
+  return res.data;
+};
+
