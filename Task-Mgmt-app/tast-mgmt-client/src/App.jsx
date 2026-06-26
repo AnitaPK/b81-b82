@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './pages/Layout'
 import CreateUpdateTask from './components/tasks/CreateUpdateTask'
 import AllTasks from './components/tasks/AllTasks'
+import MyTasks from './components/tasks/MyTasks'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,7 +33,7 @@ function App() {
           <Route path="edit-task/:ID" element={<CreateUpdateTask />} />
 
           <Route path="all-tasks" element={<AllTasks />}></Route>
-
+          <Route path="my-tasks" element={<MyTasks />}></Route>
 
         </Route>
       </Routes>

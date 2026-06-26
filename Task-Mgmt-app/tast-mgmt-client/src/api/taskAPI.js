@@ -14,3 +14,9 @@ export const deleteTASK = async (id) => {
   const res = await axiosInstance.delete(`/task/delete/${id}`);
   return res.data;
 };
+
+export const getTasksByUSer = async ()=>{
+  const res = await axiosInstance.get('/assign/get-tasks-by-user')
+  return res.data;
+
+}

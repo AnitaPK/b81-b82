@@ -40,6 +40,9 @@ const User = sequelize.define(
       defaultValue: "user",
       allowNull: false,
     },
+    imgPath:{
+      type:DataTypes.STRING,
+    }
   },
   {
     tableName: "users",

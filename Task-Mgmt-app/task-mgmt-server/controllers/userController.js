@@ -5,10 +5,13 @@ require('dotenv').config()
 
 
 const register = async (req,res)=>{
-    console.log(req.body)
+    console.log(req.body,"=========")
     let {name,email, password,contactNumber} = req.body
 
     try {
+        if (!req.file) {
+            return res.status(400).send({success: false,msg: "Please upload image",});
+        }
         const existingUser =await User.findOne({where:{email:email}})
 
         if(existingUser){
@@ -18,7 +21,10 @@ const register = async (req,res)=>{
         console.log(salt,"Salt")
         password =await bcryptjs.hashSync(password, salt)
         console.log(password,"HashPassword")
-        const newUser = await User.create({name,email,password,contactNumber})
+
+        let imgPath = `/uploads/users/${req.file.filename}`;
+
+        const newUser = await User.create({name,email,password,contactNumber, imgPath})
         res.status(201).send({msg:"Successfully Registered",success:true})
         
     } catch (error) {
@@ -58,8 +64,15 @@ const getUserInfo = async(req,res) =>{
         const loggedUser =  await User.findByPk(req.user.id,{
             attributes:{exclude:["password", "createdAt","updatedAt"]}
         })
+        console.log(loggedUser)
+        if(loggedUser.imgPath){
+        imgPath = 'http://localhost:7005'+loggedUser.imgPath
+        }
 
-        res.status(200).send({loggedUser:loggedUser,success:true})
+        userData = {...loggedUser,imgPath,}
+
+        console.log(loggedUser, "after img path change")
+        res.status(200).send({loggedUser:userData,success:true})
 
         } catch (error) {
         res.status(500).send({msg:"Server error", success:false})

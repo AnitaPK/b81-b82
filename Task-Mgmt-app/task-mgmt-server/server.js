@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 const {conneDB} = require('./config/db')
 require('dotenv').config()
 const taskRouter = require('./routes/taskRoute')
@@ -19,5 +20,9 @@ app.use('/task', taskRouter)
 app.use('/user', userRouter)
 app.use('/assign', assignTaskRouter)
 
+app.use('/uploads', express.static("uploads"))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+
+// http://localhost:5003/uploads/

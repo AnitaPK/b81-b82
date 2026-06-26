@@ -1,7 +1,10 @@
 import axiosInstance from "./axiosInstance";
 
 export const registerUser = async (userData) => {
-  const res = await axiosInstance.post("/user/register", userData);
+  const res = await axiosInstance.post("/user/register", userData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },});
   return res.data;
 };
 

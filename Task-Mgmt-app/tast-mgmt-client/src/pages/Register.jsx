@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
 
+  const [imgPath, setImage] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +27,18 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await registerUser(formData);
+      const payload = new FormData();
+
+      payload.append("name", formData.name);
+      payload.append("email", formData.email);
+      payload.append("password", formData.password);
+      payload.append("contactNumber", formData.contactNumber);
+
+      if (imgPath) {
+        payload.append("imgPath", imgPath);
+      }
+
+      const res = await registerUser(payload);
 
       toast.success(res.msg || "Registration successful");
       navigate("/");
@@ -111,6 +124,16 @@ const Register = () => {
                       placeholder="Enter 10 digit number"
                     />
                   </div>
+                </div>
+
+                <div className="mb-3">
+                  <label>Profile Image</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
                 </div>
 
                 <button className="btn btn-primary w-100">
