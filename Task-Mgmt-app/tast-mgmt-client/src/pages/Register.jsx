@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { registerUser } from "../api/api.js";
 import { toast } from "react-toastify";
-import { FaUser, FaEnvelope, FaLock, FaPhone } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaPhone,
+  FaTrashAlt,
+} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const [imgPath, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,6 +28,20 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImage(null);
+    setImagePreview(null);
   };
 
   const handleSubmit = async (e) => {
@@ -55,7 +76,28 @@ const Register = () => {
             <div className="card-header bg-primary text-white text-center">
               <h3>Register</h3>
             </div>
+{imagePreview && (
+                    <div className="mt-3 position-relative d-inline-block w-25 mx-auto">
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
+                        className="rounded-circle shadow-sm"
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
+                        }}
+                      />
 
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm position-absolute top-0 end-0 rounded-circle"
+                        onClick={handleRemoveImage}
+                      >
+                        <FaTrashAlt />
+                      </button> 
+                    </div>
+                  )}
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
@@ -132,8 +174,10 @@ const Register = () => {
                     type="file"
                     className="form-control"
                     accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={handleImageChange}
                   />
+
+                  
                 </div>
 
                 <button className="btn btn-primary w-100">
@@ -142,7 +186,7 @@ const Register = () => {
               </form>
 
               <p className="text-center mt-3">
-                Already have account? <Link to="/login">Login</Link>
+                Already have account? <Link to="/">Login</Link>
               </p>
             </div>
           </div>

@@ -20,3 +20,9 @@ export const getTasksByUSer = async ()=>{
   return res.data;
 
 }
+
+export const getTaskByID = async (id) =>{
+  const res = await axiosInstance.get(`/task/getTask/${id}`)
+  return res.data;
+
+}

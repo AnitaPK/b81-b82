@@ -64,14 +64,15 @@ const getUserInfo = async(req,res) =>{
         const loggedUser =  await User.findByPk(req.user.id,{
             attributes:{exclude:["password", "createdAt","updatedAt"]}
         })
-        console.log(loggedUser)
-        if(loggedUser.imgPath){
-        imgPath = 'http://localhost:7005'+loggedUser.imgPath
+    // Convert Sequelize instance to plain object
+        const userData = loggedUser.toJSON();
+
+        // Update image path
+        if (userData.imgPath) {
+            userData.imgPath = `http://localhost:7005${userData.imgPath}`;
         }
 
-        userData = {...loggedUser,imgPath,}
-
-        console.log(loggedUser, "after img path change")
+        console.log(userData);
         res.status(200).send({loggedUser:userData,success:true})
 
         } catch (error) {

@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllTasks = () => {
     const navigate = useNavigate();
@@ -231,7 +231,11 @@ const AllTasks = () => {
                                     currentTasks.map((task) => (
                                         <tr key={task.id}>
                                             <td>{task.id}</td>
-                                            <td>{task.title}</td>
+                                            <td>
+                                                <Link to={`/dashboard/get-task-details/${task.id}`}>
+                                                {task.title}
+                                                </Link>
+                                            </td>
                                             <td>{task.description}</td>
                                             <td>
                                                 <span

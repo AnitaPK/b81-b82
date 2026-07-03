@@ -1,0 +1,55 @@
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 30px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 10%;
+  width: 80%;
+  height: 4px;
+  background-color: #ddd;
+  z-index: 0;
+}
+
+.timeline-step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 33%;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: bold;
+}
+
+.timeline-step p {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.timeline-step.active.started .circle {
+  background-color: #0d6efd;
+}
+
+.timeline-step.active.inprogress .circle {
+  background-color: #ffc107;
+  color: black;
+}
+
+.timeline-step.active.completed .circle {
+  background-color: #198754;
+}

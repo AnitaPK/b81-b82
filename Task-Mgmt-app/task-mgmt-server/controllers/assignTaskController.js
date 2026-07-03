@@ -71,7 +71,7 @@ async function getTaskWithUsers(req, res) {
         });
 
         const result = {
-            task: {
+            tasks: {
                 id: assignments[0].Task.id,
                 title: assignments[0].Task.title,
                 description: assignments[0].Task.description,

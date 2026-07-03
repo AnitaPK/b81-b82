@@ -5,7 +5,7 @@ const {conneDB} = require('./config/db')
 require('dotenv').config()
 // const taskRouter = require('./routes/taskRoute')
 const userRouter = require('./routes/userRoute')
-// const projectRouter = require('./routes/projectRouter')
+const projectRouter = require('./routes/projectRoute')
 
 // const assignTaskRouter = require('./routes/assignTaskRouter')
 
@@ -19,7 +19,7 @@ app.use(cors())
 app.get('/', (req, res) => res.send('Hello World!'))
 
 // app.use('/task', taskRouter)
-// app.use('/project',projectRouter)
+app.use('/project',projectRouter)
 app.use('/user', userRouter)
 // app.use('/assign', assignTaskRouter)
 

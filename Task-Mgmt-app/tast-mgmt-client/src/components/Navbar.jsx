@@ -36,7 +36,11 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="d-flex align-items-center gap-3 text-white">
           <span>
-            <FaUserCircle size={22} className="me-2" />
+            {/* <FaUserCircle size={22} className="me-2" /> */}
+            <img src={user?.imgPath} alt="" 
+            style={{width:"70px",height:"70px", borderRadius:"50%"}}
+            className="me-2"
+            />
             {user?.name}
           </span>
 
