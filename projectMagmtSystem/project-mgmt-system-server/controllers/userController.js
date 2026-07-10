@@ -106,6 +106,18 @@ const getAllUsers = async (req,res) =>{
     }
 
 }
+
+
+
+const requestForHOD = async (req,res) =>{
+    try{
+        
+
+    }catch(error) {
+        res.status(500).send({msg:"Server error", success:false})
+
+    }
+    }
 module.exports = {
     register, login , getUserInfo, getAllUsers
 }
